@@ -1,0 +1,1 @@
+export const API_URL = "https://990cc3de-cdf0-4878-9d27-466c909a659a.mock.pstmn.io/api";
