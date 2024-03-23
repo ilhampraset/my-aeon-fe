@@ -9,7 +9,15 @@ npm install
 ```
 npm run serve
 ```
+### Unit Test And End-to-end Test
 
+```
+ 
+npm run test:unit
+npm run test:e2e 
+
+note: for e2e test run npm run serve first
+```
 ### Compiles and minifies for production
 ```
 npm run build

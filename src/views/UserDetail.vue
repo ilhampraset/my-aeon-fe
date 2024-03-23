@@ -32,26 +32,28 @@ import { API_URL } from '@/config/api.js'
   export default {
     data() {
       return {
-        userData: {}
+        userData: {},
+        errMessage : ""
       };
     },
     mounted() {
-      this.fetchUserData();
+       this.fetchUserData(this.$route.params.id);
     },
     methods: {
-      fetchUserData() {
-        const userId = this.$route.params.id; // Access route params in Vue 2
-        axios.get(`${API_URL}/users/${userId}`)
-            .then(response => {
-              this.userData = response.data.data;
-              console.log(this.userData)
-            })
-            .catch(error => {
-              console.error('Error fetching user data:', error);
-            });
+     async fetchUserData(userID) {
+       try {
+         const response = await axios.get(`${API_URL}/users/${userID}`)
+         if (response.data && response.data.data) {
+           this.userData = response.data.data;
+         } else {
+           this.errMessage = response
+         }
+       }catch (error) {
+         console.log('Error fetching user data:', error);
+         this.errMessage = error
+       }
       },
       goBack() {
-
         this.$router.push('/users');
       }
     }
